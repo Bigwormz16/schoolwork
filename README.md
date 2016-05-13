@@ -5,7 +5,7 @@ An [almost?] fully-complete archive of the code that I've written for school ove
 
 Descriptions of 
 
-Table of Contents
+Table of Contents  
 CISP 301
 
 CISP 360
@@ -21,16 +21,16 @@ CISP 440
 
 ---
 
-CISP 301 - Algorithm Design and Implementation
-The first programming class I ever took. 
-Contents include iterative revisions of a program lovingly known as the "payroll reporter."
+## CISP 301 - Algorithm Design and Implementation  
+The first programming class I ever took.  
+Contents include iterative revisions of a program lovingly known as the "payroll reporter."  
 
-CISP 360 - Intro to Structured Programming
+## CISP 360 - Intro to Structured Programming
 
-CISP 400 - Object Oriented Programming with C++
-Taught by the same professor as 301, this course took an iterative approach on a dictionary application.
+## CISP 400 - Object Oriented Programming with C++
+Taught by the same professor as 301, this course took an iterative approach on a dictionary application.  
 
-CISP 310 - Assembly Language Programming for Microcomputers
+## CISP 310 - Assembly Language Programming for Microcomputers  
 Fairly sloppy assembly code. Very fun class, though!
 
 	10mult - input two numbers of up to ten digits each, outputs the product
@@ -60,16 +60,16 @@ Fairly sloppy assembly code. Very fun class, though!
 
 
 
-CISP 430 - Data Structures
-	A1: 
-	A2: implementation of a sequence
-	A3: implementation of a sequence using a linked list
-	A4: implementation of a priority queue using a linked list
-	A5: a permutation-generating class which permutes a string
-	A6: 
-	FINAL: code written for final exam ?, circular array
+## CISP 430 - Data Structures  
+	A1:   
+	A2: implementation of a sequence  
+	A3: implementation of a sequence using a linked list  
+	A4: implementation of a priority queue using a linked list  
+	A5: a permutation-generating class which permutes a string  
+	A6:   
+	FINAL: code written for final exam ?, circular array  
 
-CISP 440 - Discrete Structures for Computer Science
+## CISP 440 - Discrete Structures for Computer Science  
 	permutations: shows all permutations or combinations of an entered number
 
 	craps: statistical analysis of the game of craps
