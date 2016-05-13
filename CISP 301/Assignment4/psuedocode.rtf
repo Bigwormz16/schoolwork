@@ -1,0 +1,224 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fmodern\fprq1\fcharset0 Courier;}}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\lang9\f0\fs24 Assignment 3\par
+PseudoCode Design Document\par
+(Program Design --> Data Design + Algorithms Design)\par
+\par
+\par
+Hierarchy chart\par
+\tab 3.0 Payroll Reporter\par
+\tab\tab 3.1 checkFile(out reportFile as file)\par
+\tab\tab 3.2 getData(in lastName, firstName as string,\par
+\tab\tab\tab\tab   out fullName as string,\par
+\tab\tab\tab\tab   out payrate, hours as real)\par
+\tab\tab 3.3 grossCalc(in payrate, hours as real)\par
+\tab\tab 3.4 taxCalc(in gross as real, in TAXRATE as const real = 15%)\par
+\tab\tab 3.5 netCalc(in tax, gross as real)\par
+\tab\tab 3.6 totCalc(in payrate, hours, gross, tax, net as real,\par
+\tab\tab\tab\tab   out totpay, tothrs, totgro, tottax, totnet as real)\par
+\tab\tab 3.7 reportData(out reportFile as file,\par
+\tab\tab\tab\tab\tab in fullName as string,\par
+\tab\tab\tab\tab\tab out payrate, hours, gross, tax, net as real)\par
+\tab\tab 3.8 loopAsk(out answer as character)\par
+\tab\tab 3.9 reportFinish(out reportFile as file,\par
+\tab\tab\tab\tab\tab   in totpay, tothrs, totgro, tottax, totnet as real\par
+\tab\tab\tab\tab\tab   in employeecount as integer)\par
+\tab\tab 3.10 validateString(in inString as string)\par
+\tab\tab 3.11 validateNumber(in inNum, minNum, maxNum as real)\par
+\tab\tab 3.12 isDigit(in inChar as character)\par
+\par
+Main Module:\par
+\pard\nowidctlpar\fi720 Data Design\par
+\pard\nowidctlpar\tab\tab Declare TAXRATE as constant real = 15%\par
+\tab\tab Declare lastName, firstName, fullName as string\par
+\tab\tab Declare payrate,hours,gross as real\par
+\tab\tab Declare tax, netpay as real\par
+\tab\tab Declare answer as character\par
+\tab\tab Declare reportFile as file\par
+\tab\tab Declare totpay, tothrs, totgro, tottax, totnet as real\par
+\tab\tab Declare employeecount as integer\par
+\par
+\par
+\pard\nowidctlpar\fi720 Algorithms Design\par
+\pard\nowidctlpar\tab 3.0 Main Module\par
+\tab\tab Open report file for write access\par
+\tab\tab checkFile(reportFile)\par
+\tab\tab DO WHILE (answer == Y OR answer == y)\par
+\pard\nowidctlpar\fi720\li1440 getData(lastName,firstName,fullName,payrate,hours)\par
+\pard\nowidctlpar\tab\tab\tab gross = grosscalc(payrate,hours)\par
+\tab\tab\tab tax = taxcalc(gross,TAXRATE)\par
+\tab\tab\tab net = netcalc(tax,gross)\par
+\tab\tab\tab employeecount = employeecount + 1\par
+\tab\tab\tab totcalc(payrate,hours,gross,tax,net,totpay,tothrs,totgro,tottax,totnet)\par
+\tab\tab\tab reportData(reportFile,fullName,payrate,hour,gross,tax,net)\par
+\tab\tab\tab loopAsk(answer)\par
+\tab\tab END DO WHILE\par
+\tab\tab reportFinish(reportFile,totpay,tothrs,totgro,tottax,totnet,employeecount)\par
+\tab end Main\par
+\par
+\tab 3.1 checkFile\par
+\tab\tab parameters:\par
+\tab\tab\tab out reportFile as file\par
+\par
+\tab\tab IF (reportFile == NULL)\par
+\tab\tab\tab Print (\ldblquote Report file does not exist.\rdblquote )\par
+\tab\tab\tab EXIT\par
+\tab\tab ELSE\par
+\tab\tab\tab print report headings to file\par
+\tab\tab ENDIF\par
+\tab end checkFile\par
+\par
+\tab 3.2 getData\par
+\tab\tab parameters:\par
+\tab\tab\tab in lastName, firstName as string,\par
+\tab\tab\tab out fullName as string,\par
+\tab\tab\tab out payrate, hours as real\par
+\par
+\tab\tab Declare ValidString as boolean\par
+\tab\tab Declare ValidNumber as boolean\par
+\tab\tab Declare retrycount as integer\par
+\tab\tab\par
+\tab\tab DO\par
+\tab\tab\tab input firstName\par
+\tab\tab\tab ValidString = validateString(firstname)\par
+\tab\tab\tab if invalid retrycount++\par
+\tab\tab WHILE (retrycount < RETRYMAX AND string is invalid)\par
+\par
+\tab\tab if !ValidString set firstname to "invalid"\par
+\tab\tab reset ValidString to FALSE\par
+\tab\tab reset retrycount to 0\par
+\par
+\tab\tab DO\par
+\tab\tab\tab input lastName\par
+\tab\tab\tab ValidString = validateString(firstname)\par
+\tab\tab\tab if invalid retrycount++\par
+\tab\tab WHILE (retrycount < RETRYMAX AND string is invalid)\par
+\par
+\tab\tab if !ValidString set lastname to "invalid"\par
+\tab\tab reset ValidString to FALSE\par
+\tab\tab reset retrycount to 0\par
+\par
+\tab\tab DO\par
+\tab\tab\tab input payrate\par
+\tab\tab\tab ValidNumber = validateNumber(hours,MINPAY,MAXPAY)\par
+\tab\tab\tab if invalid retrycount++\par
+\tab\tab WHILE (retrycount < RETRYMAX AND number is invalid)\par
+\par
+\tab\tab if !ValidNumber set payrate to 0\par
+\tab\tab reset ValidNumber to FALSE\par
+\tab\tab reset retrycount to 0\par
+\tab\tab\par
+\tab\tab DO\par
+\tab\tab\tab input hours\par
+\tab\tab\tab ValidNumber = validateNumber(hours,MINHR,MAXHR)\par
+\tab\tab\tab if invalid retrycount++\par
+\tab\tab WHILE (retrycount < RETRYMAX AND number is invalid)\par
+\par
+\tab\tab if !ValidNumber set hours to 0\par
+\tab\tab reset ValidNumber to FALSE\par
+\tab\tab reset retrycount to 0\par
+\par
+\tab\tab input hours and payrate\par
+\tab\tab combine lastName and firstName with comma-space\par
+\tab end getData\par
+\par
+\tab 3.3 grossCalc\par
+\tab\tab parameters:\par
+\tab\tab\tab in payrate, hours as real\par
+\par
+\tab\tab IF (hours <= 40)\par
+\tab\tab     \tab compute gross without overtime pay\par
+\tab\tab ELSE\par
+\tab\tab\tab compute gross with overtime pay\par
+\tab\tab ENDIF\par
+\tab end grossCalc\par
+\par
+\tab 3.4 taxCalc\par
+\tab\tab parameters:\par
+\tab\tab\tab in gross as real,\par
+\tab\tab\tab in TAXRATE as const real = 15%\par
+\par
+\tab\tab compute tax as 15% of gross\par
+\tab end taxCalc\par
+\par
+\tab 3.5 netCalc\par
+\tab\tab parameters:\par
+\tab\tab\tab in tax, gross as real\par
+\par
+\tab\tab compute netpay as gross \endash  tax\par
+\tab end netCalc\par
+\par
+\tab 3.6 totCalc\par
+\tab\tab parameters:\par
+\tab\tab\tab in payrate, hours, gross, tax, net as real,\par
+\tab\tab\tab out totpay, tothrs, totgro, tottax, totnet as real\par
+\par
+\tab\tab totpay = totpay + payrate\par
+\tab\tab tothrs = tothrs + hours\par
+\tab\tab totgro = totgro + gross\par
+\tab\tab tottax = tottax + tax\par
+\tab\tab totnet = totnet + netpay\par
+\tab end totCalc\par
+\par
+\tab 3.7 reportData\par
+\tab\tab parameters:\par
+\tab\tab\tab out reportFile as file,\par
+\tab\tab\tab in fullName as string,\par
+\tab\tab\tab out payrate, hours, gross, tax, net as real\par
+\par
+\tab\tab print payroll report to screen and file in order:\par
+\tab\tab headings,fullName,payrate,hours,gross,tax,netpay\par
+\tab end reportData\par
+\par
+\tab 3.8 loopAsk\par
+\tab\tab parameters:\par
+\tab\tab\tab out answer as character\par
+\par
+\tab\tab prompt for another employee\par
+\tab\tab input answer (y/n)\par
+\tab end loopAsk\par
+\par
+\tab 3.9 reportFinish\par
+\tab\tab parameters:\par
+\tab\tab\tab out reportFile as file,\par
+\tab\tab\tab in totpay, tothrs, totgro, tottax, totnet as real\par
+\tab\tab\tab in employeecount as int\par
+\par
+\tab\tab print tot variables to report file\par
+\tab\tab print averages as tot[pay,hrs,gro,tax,net]/employeecount\par
+\tab\tab close report file\par
+\tab\tab print report success\par
+\tab end reportFinish\par
+\par
+\tab 3.10 validateString\par
+\tab\tab  parameters:\par
+\tab\tab\tab in inString as string\par
+\par
+\tab\tab FOR each character in the string\par
+\tab\tab\tab if character is a digit\par
+\tab\tab\tab return FALSE\par
+\tab\tab\tab END IF\par
+\tab\tab return TRUE\par
+\tab end validateString\par
+\par
+\tab 3.11 validateNumber\par
+\tab\tab parameters:\par
+\tab\tab\tab in inNum, minNum, maxNum as real\par
+\par
+\tab\tab if inNum is greater than or equal to minimum AND less than or equal to maximum\par
+\tab\tab\tab return TRUE\par
+\tab\tab else\par
+\tab\tab\tab return FALSE\par
+\tab\tab END IF\par
+\tab end validateNumber\par
+\par
+\tab 3.12 isDigit\par
+\tab\tab parameters:\par
+\tab\tab\tab in inChar as character\par
+\par
+\tab\tab if inChar is a digit\par
+\tab\tab\tab return TRUE\par
+\tab\tab else\par
+\tab\tab\tab return FALSE\par
+\tab end isDigit\par
+}
+ 

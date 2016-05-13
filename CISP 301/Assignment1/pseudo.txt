@@ -1,0 +1,39 @@
+Assignment 1
+Ian Rosner
+(Program Design --> Data Design + Algorithms Design)
+
+Data Design
+	Declare TAXRATE as constant float = 15%
+	Declare lastName, firstName, fullName as string
+	Declare payrate,hours,gross as float
+	Declare tax, netpay as float
+	Declare answer as character
+	Declare reportFile as file
+
+Algorithms Design
+
+	Open report file for write access
+	print report headings to file
+
+	DO WHILE (answer == Y | answer == y)
+		input lastName, firstName
+		input hours and payrate
+
+			IF (hours <= 40)
+				calculate gross without overtime pay
+			ELSE
+				calculate gross with overtime pay
+			ENDIF
+
+		calculate tax as 15% of gross
+		calculate netpay as gross – tax
+		calculate lastName and firstName with comma-space
+
+		print payroll report to screen and file
+
+	prompt for another employee
+	input answer (y/n)
+
+	close report file
+	print report success
+END

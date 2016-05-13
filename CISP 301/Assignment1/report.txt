@@ -1,0 +1,9 @@
+     Employee               Pay           Hours     Gross     Tax        Net  
+     Name                   Rate          Worked    Pay       Amount     Pay  
+     ========               =====         ======    =====     ======     =====
+     Doe, John              17.00          46.50   845.75     126.86    718.89
+     Whittle, Ed            11.50          25.50   293.25      43.99    249.26
+     Marion, Louise         13.00          40.00   520.00      78.00    442.00
+     Prentiss, Paula        15.75          50.50   878.06     131.71    746.35
+     Davidson, Carl          8.75          38.00   332.50      49.88    282.63
+     Rosner, Ian             0.00           0.00     0.00       0.00      0.00

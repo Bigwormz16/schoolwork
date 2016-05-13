@@ -1,0 +1,116 @@
+// NAME: Ian Rosner
+// CLASS: CISP430 Spring 2014 Huang
+// STUDENT ID: W1387836
+// Purpose: implementation of circular array queue as defined in CISP430V4Header.h
+#include <assert.h> 
+#include <iomanip> //for setw()
+
+template<class RecordType>
+queueType<RecordType>::queueType(int queueSize) //defaults to 100  
+{ //set maxQueueSize -- if size passed is <= 0, default to 100
+    if (queueSize <= 0)
+    { //alert user of error
+		cout << "Size of the array to hold the queue must "
+			 << "be positive." << endl;
+		cout << "Creating an array of size 100." << endl<<endl;
+		//set to default size of 100
+		maxQueueSize = 100;
+    }
+    else //otherwise, use the value passed in
+   		maxQueueSize = queueSize;
+
+    //initializeQueue(); // not necessary
+    list = new RecordType[maxQueueSize]; //allocate memory chunk for data
+	assert(list != NULL); //ensure that memory allocation succeeded
+	count = 0;
+	first = 0; //initialize indexes
+	last = maxQueueSize - 1; //circular queue starting position
+} //end constructor
+
+template<class RecordType>
+queueType<RecordType>::~queueType()   
+{
+   delete [] list; //release memory to the heap
+} //end destructor
+
+template<class RecordType>
+bool queueType<RecordType>::isEmptyQueue()
+{
+   return (count == 0);
+} //end isEmptyQueue()
+
+template<class RecordType>
+bool queueType<RecordType>::isFullQueue()
+{
+   return(count == maxQueueSize);
+} //end isFullQueue()
+
+template<class RecordType>
+void queueType<RecordType>::push(const RecordType& newElement)
+{
+	if (isFullQueue() == false)
+	{
+		last = next_index(last); //update last to new index
+		list[next_index(last)] = newElement; //insert new element into circular array
+		count++; //one more item added, increment count
+	}
+	else
+  		cerr << "Cannot add to a full queue" << endl; 
+} //end push()
+
+template<class RecordType>
+RecordType queueType<RecordType>::front() //Type changed to RecordType
+{
+   assert(!isEmptyQueue());
+   return list[first]; //changed from list[0]
+} //end front()
+
+
+template<class RecordType>
+RecordType queueType<RecordType>::back() //Type changed to RecordType
+{
+     assert(!isEmptyQueue());
+     return list[rear]; //changed from list[count - 1];
+} //end back()
+
+
+template<class RecordType>
+void queueType<RecordType>::pop()
+{
+	if (!isEmptyQueue()) //check precondition
+	{
+		first = next_index(first); //advance to next item in queue
+		count--; //one less item -- decrement count
+   }
+   else //if precondition is not met...
+		cerr << "Cannot remove from an empty queue" << endl;
+} //end pop()
+
+template<class RecordType>
+void queueType<RecordType>::print()
+{
+	int counter = 0;
+	cout<<"This Queue contains " << count << " elements." << endl;
+	while (!isEmptyQueue())
+	{
+		cout  << setw(3) << front() << " ";
+		pop();
+		counter++;
+		if ((counter % 10)==0) cout<< endl;
+	}
+	cout<<endl<<"_______________________________________"
+		<<endl<<endl;
+} //end print()
+
+
+template<class RecordType>
+int queueType<RecordType>::getmaxQueueSize()
+{ //fixed whitespace
+	return maxQueueSize;
+} //end getmaxQueueSize()
+
+template<class RecordType>
+int queueType<RecordType>::next_index(int i)
+{
+	return ((i + 1) % maxQueueSize);
+} //end next_index(i)

@@ -1,0 +1,198 @@
+//  FILE: table2.template
+//  NAME: Ian Rosner
+//  STUDENT ID: W1387836
+//  Assignment 6
+//  Purpose: implementation of table2.h, a hash-chaining table
+//  Notes: uses toolkit functions found in link2.template
+//         TABLE_SIZE is set in table2.h
+/*--------------------------------------------------------------------------------*/
+#include "table2.h"
+
+using std::cout;
+using std::endl;
+
+template <class RecordType>
+table<RecordType>::table( )
+{ //constructor
+	total_records = 0;
+
+	for(int i = 0; i < TABLE_SIZE; i++)
+	{ //initialize linked lists as null head ptr
+		data[i] = NULL;
+	}
+	
+	//test memory leakage
+//	Node<RecordType> *test = new Node<RecordType>;
+//	test->link = NULL;
+}
+
+template <class RecordType>
+table<RecordType>::table(const table& source)
+{
+	Node<RecordType> *tempTail;
+
+	//initialize and copy values
+	for(int i = 0; i < TABLE_SIZE; i++)
+	{ //list_copy(source, head, tail)
+		list_copy(source.data[i], data[i], tempTail);
+		//this->data[i] = tempHead; //set head for data set
+	}
+	this->total_records = source.total_records;
+}
+
+template <class RecordType>
+table<RecordType>::~table( )
+{
+	for(int i = 0; i < TABLE_SIZE; i++)
+	{ //clear via toolkit function
+		list_clear(data[i]);
+	}
+}
+
+template <class RecordType>
+void table<RecordType>::insert(const RecordType& entry)
+{
+	if(is_present(entry.key) == false) //ensure no duplicate keys
+	{
+		Node<RecordType> *cursor = data[hash(entry.key)]; //set cursor to head chain node
+		
+		if(cursor == NULL)
+		{
+			//create new head pointer (and set cursor to it)
+			cursor = data[hash(entry.key)] = new Node<RecordType>;
+			cursor->data = entry;
+			cursor->link = NULL;
+		}
+		else
+		{
+			//first, find insert point
+			while(cursor->link != NULL && cursor->data.key != entry.key)
+			{
+				cursor = cursor->link;
+			} //cursor now contains last node in list
+			
+			cursor->link = new Node<RecordType>;
+			//create new ptr, set values for new entry
+			cursor = cursor->link;
+			cursor->link = NULL;
+			cursor->data = entry;
+			//else - duplicate key - do not insert
+		}
+		
+		total_records++; //new entry added -- increment count
+	}
+}	//else, key already exists in table -- no duplicates allowed
+
+template <class RecordType>
+void table<RecordType>::remove(int key)
+{
+	Node<RecordType> *cursor = data[hash(key)],
+					 *precursor = NULL;
+
+	/* find node for deletion
+	(cant use is_present since we need the node address) */
+	bool found = false;
+	while(cursor != NULL)
+	{ //search for node containing key
+		if(cursor->data.key == key)
+		{ //node found -- time to delete
+			found = true;
+			break;
+		}
+		precursor = cursor;
+		cursor = cursor->link;
+	}
+	if(found == true)
+	{
+		//unwanted node found -- time to delete
+		//cursor contains node to be deleted
+		list_remove(precursor);
+		total_records--;
+	}
+	//else - no node to delete - do nothing
+}
+
+template <class RecordType>
+void table<RecordType>::clear()
+{
+ 	for(int i = 0; i < TABLE_SIZE; i++)
+ 	{ //use toolkit clear on all indexes
+ 		list_clear(data[i]);
+ 	}
+ }
+
+template <class RecordType>
+void table<RecordType>::print(int index) const
+{
+	Node<RecordType> *cursor = data[index];
+	//print header
+	cout << "[< " << index << " >]----> ";
+	while(cursor != NULL)
+	{ //traverse nodes, printing each data key
+		cout << "[" << cursor->data.key << "]-->";
+		cursor = cursor->link;
+	}
+	cout << " NULL" << endl; //end node
+}
+
+template <class RecordType>
+void table<RecordType>::operator=(const table& source)
+{
+	if(this == &source) //handle self-assignment case
+		return;
+
+	clear(); //reset object -- prevent leaks
+	Node<RecordType> *tempTail;
+
+	//initialize and copy values
+	for(int i = 0; i < TABLE_SIZE; i++)
+	{ //list_copy(source, head, tail)
+		list_copy(source.data[i], data[i], tempTail);
+		//this->data[i] = tempHead; //set head for data set
+	}
+	this->total_records = source.total_records;
+}
+
+template <class RecordType>
+void table<RecordType>::find(int key, bool& found, RecordType& result) const
+{
+	/*Postcondition: If a record is in the Table with the specified key, then found is true and result is set to a copy of the record with that key.  Otherwise found is false and the result contains garbage. */
+	Node<RecordType> *cursor = data[hash(key)];
+
+	found = false;
+	while(cursor != NULL && cursor->data.key != key)
+	{
+		if(cursor->data.key == key)
+		{ //we have found our match
+			found = true;
+			result = cursor->data;
+			break;
+		}
+		//advance through list
+		cursor = cursor->link;
+	}
+}
+
+template <class RecordType>
+bool table<RecordType>::is_present(int key) const
+{
+	Node<RecordType> *cursor = data[hash(key)];
+
+	bool found = false;
+	while(cursor != NULL)
+	{
+		if(cursor->data.key == key)
+		{ //we have found our match
+			found = true;
+			break; //escape while loop
+		}
+		cursor = cursor->link; //advance list
+	}
+	return found;
+}
+
+template <class RecordType>
+std::size_t table<RecordType>::hash(int key) const
+{ //find which index we wish to slot our entry into
+	return key % TABLE_SIZE;
+}
