@@ -1,5 +1,5 @@
 ** work in progress - still working on cleaning up files/folders & writing descriptions for each project!
-TODO: 360, 400, UCD coursework
+TODO: 400, UCD coursework
 
 An [almost?] fully-complete archive of the code that I've written for school over the years.
 
@@ -25,7 +25,32 @@ CISP 440
 The first programming class I ever took.  
 Contents include iterative revisions of a program lovingly known as the "payroll reporter."  
 
-## CISP 360 - Intro to Structured Programming
+
+
+## CISP 360 - Intro to Structured Programming  
+**grouped with partners for some assignments**  
+	
+	challenges - group project: various challenges listed in the book, mostly small calculators  
+				 examples include: calculate amount of slices in a pizza, monthly interest calculator,  
+				 calorie calculator, monthly payments to pay off loans, box office profit calculator  
+				 (22 applets in total)
+
+	rainfall - collects statistics about monthly rainfall  
+			   average rainfall, total rainfall, least rainfall, most rainfall  
+
+	temperature [group] - a temperature converter  
+
+	DigitsInStrings - sums the single-digit numbers occurring in a string  
+
+	FinalFix[1|2] - assignment was to fix the bugs in given programs (included for completeness)  
+
+	PassByReference - small program to demonstrate output via passing an address  
+
+	PayrollReporter - the good ol' payroll reporter! [see: cisp 301]  
+
+	QuarterlySales - quarterly sales calculator a business with various divisions  
+
+
 
 ## CISP 400 - Object Oriented Programming with C++
 Taught by the same professor as 301, this course took an iterative approach on a dictionary application.  
