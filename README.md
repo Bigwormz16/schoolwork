@@ -1,11 +1,9 @@
-** work in progress - still working on cleaning up files/folders & writing descriptions for each project!
-TODO: 400, UCD coursework
+An [almost?] fully-complete archive of the code that I've written for school over the years.  
+*work in progress - still working on cleaning up files/folders & writing descriptions for each project!
+TODO: 400, UCD coursework*
+**Check back tomorrow for completed repository! :)**
 
-An [almost?] fully-complete archive of the code that I've written for school over the years.
-
-Descriptions of 
-
-Table of Contents  
+# Table of Contents  
 * [CISP 301](#c301)
 
 * [CISP 360](#c360)
@@ -14,12 +12,16 @@ Table of Contents
 
 * [CISP 400](#c400)
 
-
 * [CISP 430](#c430)
 
 * [CISP 440](#c440)
 
 ---
+* [ECS 154a](#e154)
+
+* [ECS 140a](#e140)
+
+* [ECS 127](#e127)
 
 ---
 
@@ -30,7 +32,7 @@ Contents include iterative revisions of a program lovingly known as the "payroll
 
 
 ## <a name="c360"></a>CISP 360 - Intro to Structured Programming  
-**grouped with partners for some assignments**  
+*[grouped with partners for some assignments]*  
 	
 	challenges - group project: various challenges listed in the book, mostly small calculators  
 				 examples include: calculate amount of slices in a pizza, monthly interest calculator,  
@@ -53,9 +55,6 @@ Contents include iterative revisions of a program lovingly known as the "payroll
 	QuarterlySales - quarterly sales calculator a business with various divisions  
 
 
-
-## <a name="c400"></a>CISP 400 - Object Oriented Programming with C++
-Taught by the same professor as 301, this course took an iterative approach on a dictionary application.  
 
 ## <a name="c310"></a>CISP 310 - Assembly Language Programming for Microcomputers  
 Fairly sloppy assembly code. Very fun class, though!
@@ -86,6 +85,10 @@ Fairly sloppy assembly code. Very fun class, though!
 
 
 
+## <a name="c400"></a>CISP 400 - Object Oriented Programming with C++
+**Coming soon!**  
+Taught by the same professor as 301, this course took an iterative approach on a dictionary application.  
+
 
 ## <a name="c430"></a>CISP 430 - Data Structures  
 	A1:   
@@ -107,10 +110,14 @@ Fairly sloppy assembly code. Very fun class, though!
 
 ---
 
-ECS 154a
+## <a name="e154"></a>ECS 154a
+**Coming soon!**  
+[dmcache and sacache]
 
-dmcache and sacache
+## <a name="e140"></a>ECS 140a
+**Coming soon!**  
+[java, lisp, prolog]  
 
-ECS 140a
-
-ECS 127
+## <a name="e127"></a>ECS 127
+**Coming soon!**  
+[substitution cipher solver, rc4 bias demonstration]
