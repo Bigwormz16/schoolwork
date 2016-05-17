@@ -1,0 +1,25 @@
+cb Ian Rosner
+
+All parts are fully functional.
+
+"final" directory contains final version of code
+Note: code within the "part" folders is not split up by class -
+      the majority of the code is under MyChar.java. "final" code is split into classes.
+      
+  Everything went smoothly for the most part. However, there are some lines
+of code that are a bit sloppy due to many typecasts and .Get() function calls.
+Example from Matrix::Sum():
+((MyInteger)sumIter.content).Set(((MyInteger)mat1.get()).Get() + ((MyInteger)mat2.get()).Get());
+
+  The reason for casting is due to content being an Element, but Element does not have a Get()
+method because the return type differs (MyInteger.Get() returns int, MyChar.Get() returns char).
+
+One solution to this would be to turn Element into a generic abstract class.
+The declaration would look something like this:
+
+public abstract class Element <T> {
+	public abstract T Get();
+	public abstract void Set(T input);
+	public abstract void Print();
+	public abstract Element copy();
+}

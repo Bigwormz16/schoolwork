@@ -1,0 +1,36 @@
+cb Ian Rosner
+
+ECS140A HW2
+
+All parts fully functional.
+
+Part 5 thoughts:
+  + Grammar:
+	for ::= '{' assignment ':' number ':' block '}'
+	
+  + Implementation:
+  	grabs the variable used in the assignment statement, compares against number.
+  	If the variable is less than number, the block is executed.
+  	Then, variable is incremented by one.
+  	
+  Example:
+  	To print 1 through 10:
+	  	{a=1:11:!a}
+	  	
+	... C-equivalent:
+		for(a = 1; a < 11; a++){ printf("%d", a); }
+	
+	I chose to have a fixed step size of one because I felt that it is consistent
+	with the simplicity of the E language, and the syntax is simple to read.
+	Additionally, it enforces the use of a single variable to control the loop.
+	
+	To implement the C code, the program had to remember which variable is used in
+	the assignment statement. Until part 5, this was not needed, so I had to choose
+	a way to do this.
+	I made a global variable in the Parser class called lastReference which stores
+	the last ID to pass through ref_id(). Then, in the for loop function, this value
+	is saved after returning from assignment().
+	That enabled me to use the same variable in all 3 parts of the C for-loop.
+	
+	There is probably a more elegant solution to this, like having the SymbolTable
+	store recently used variables.

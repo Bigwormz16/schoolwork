@@ -1,6 +1,6 @@
 An [almost?] fully-complete archive of the code that I've written for school over the years.  
 *work in progress - still working on cleaning up files/folders & writing descriptions for each project!
-TODO: 400, UCD coursework*
+TODO: write descriptions for 140
 **Check back tomorrow for completed repository! :)**
 
 # Table of Contents  
@@ -111,13 +111,29 @@ Taught by the same professor as 301, this course took an iterative approach on a
 ---
 
 ## <a name="e154"></a>ECS 154a
-**Coming soon!**  
-[dmcache and sacache]
+
+	**You are to implement two caches for a simulated RAM that has 16-bit addresses, and is byte addressable. Both caches will have block sizes of 8 bytes, and a total capacity of 512 bytes.**  
+	See pdf for more details on this assignment!  
+
+	dmcache: a simulation of a directly-mapped cache
+
+	sacache: a simulation of a four-way set associative cache
+
+	vm: a virtual memory page replacement simulator
+
 
 ## <a name="e140"></a>ECS 140a
 **Coming soon!**  
 [java, lisp, prolog]  
+todo: write descriptions
 
 ## <a name="e127"></a>ECS 127
-**Coming soon!**  
-[substitution cipher solver, rc4 bias demonstration]
+	
+	substitution_solver: cracks a substitution cipher using the
+						 frequencies of two-letter pairs occurring
+						 in a corupus text (in this case, we used
+						 the novel "War and Peace")
+
+	rc4_bias: demonstrates how the rc4 stream cipher has a bias in that
+			  the second byte that it outputs is approximately twice as
+			  likely to be 0 than any other value.
