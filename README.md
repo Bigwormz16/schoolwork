@@ -1,7 +1,6 @@
 An [almost?] fully-complete archive of the code that I've written for school over the years.  
 *work in progress - still working on cleaning up files/folders & writing descriptions for each project!
 TODO: write descriptions for 140
-**Check back tomorrow for completed repository! :)**
 
 # Table of Contents  
 * [CISP 301](#c301)
